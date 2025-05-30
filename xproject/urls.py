@@ -15,7 +15,6 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from .views import homepage 
 from page.views import TeamPage
 from page.views import ProjectsPage
 from page.views import PapersPage
@@ -25,5 +24,4 @@ urlpatterns = [
     path('team/', TeamPage.as_view(), name = 'team'),
     path('projects/', ProjectsPage.as_view(), name = 'projects'),
     path('papers/', PapersPage.as_view(), name = 'papers'),
-    path('', homepage, name='homepage'),
 ]
