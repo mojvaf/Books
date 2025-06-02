@@ -18,10 +18,12 @@ from django.urls import path
 from page.views import TeamPage
 from page.views import ProjectsPage
 from page.views import PapersPage
+from page.views import AuthorsListView
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('team/', TeamPage.as_view(), name = 'team'),
     path('projects/', ProjectsPage.as_view(), name = 'projects'),
     path('papers/', PapersPage.as_view(), name = 'papers'),
+    path('authors/', AuthorsListView.as_view(), name='authors' )
 ]
