@@ -1,5 +1,7 @@
 from django.test import SimpleTestCase
 from django.urls import reverse
+from django.test import TestCase
+from .models import Authors
 
 class AboutPaperTest(SimpleTestCase):
     
@@ -32,3 +34,26 @@ class AboutTeamTest():
         r = self.client.get('/team/')
         self.assertEqual(r.status_code, 200)
         self.assetTemplateUsed(r,'team.html')
+        
+###################
+ # test data base
+###################        
+class AuthorsListTest(TestCase):
+    
+    def test_list(self):
+        r = self.client.get(reverse( 'authors'))
+        self.assertTemplateUsed(r,'authors.html')
+        self.assertEqual(r.status_code, 200)
+        self.assertEqual(r.context.get('list_authors').count(),0)
+        
+        
+        p = Authors.objects.create(
+             first_name="John",
+             last_name="Doe",
+             bio="A test author."
+        )
+            
+        r = self.client.get(reverse('authors'))
+        self.assertEqual(r.status_code, 200)
+        self.assertEqual(r.context.get('list_authors').count(),1)
+        self.assertEqual(r.context.get('list_authors').first(), p)
