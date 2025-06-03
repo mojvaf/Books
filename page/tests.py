@@ -11,9 +11,9 @@ class AboutPaperTest(SimpleTestCase):
     
     
     def test_url_exists_at_correct_location(self):
-        r = self.client.get('/papers/')
-        self.assertEqual(r.status_code, 200)
-        self.assertTemplateUsed(r, 'papers.html')
+        res = self.client.get(self.get_url)
+        self.assertEqual(res.status_code, 200)
+        self.assertTemplateUsed(res, 'papers.html')
         
 class AboutProjectTest(SimpleTestCase):
     
@@ -22,29 +22,30 @@ class AboutProjectTest(SimpleTestCase):
        
        
     def test_url_exists_at_correct_location(self):
-        r =   self.client.get('/projects/')
-        self.assertEqual(r.status_code, 200)
-        self.assertTemplateUsed(r, 'projects.html')
+        res =   self.client.get(self.get_url)
+        self.assertEqual(res.status_code, 200)
+        self.assertTemplateUsed(res, 'projects.html')
 
-class AboutTeamTest():
+class AboutTeamTest(SimpleTestCase):
     def setUp(self):
         self.get_url = reverse('team')
     
     def test_url_exists_at_correct_location(self):
-        r = self.client.get('/team/')
-        self.assertEqual(r.status_code, 200)
-        self.assetTemplateUsed(r,'team.html')
+        res = self.client.get(self.get_url)
+        self.assertEqual(res.status_code, 200)
+        self.assertTemplateUsed(res,'team.html')
         
-###################
- # test data base
-###################        
+
+ # test database
+     
 class AuthorsListTest(TestCase):
     
     def test_list(self):
-        r = self.client.get(reverse( 'authors'))
-        self.assertTemplateUsed(r,'authors.html')
-        self.assertEqual(r.status_code, 200)
-        self.assertEqual(r.context.get('list_authors').count(),0)
+        url = reverse('authors')
+        res = self.client.get(url)
+        self.assertTemplateUsed(res,'authors.html')
+        self.assertEqual(res.status_code, 200)
+        self.assertEqual(res.context.get('list_authors').count(),0)
         
         
         p = Authors.objects.create(
@@ -53,7 +54,7 @@ class AuthorsListTest(TestCase):
              bio="A test author."
         )
             
-        r = self.client.get(reverse('authors'))
-        self.assertEqual(r.status_code, 200)
-        self.assertEqual(r.context.get('list_authors').count(),1)
-        self.assertEqual(r.context.get('list_authors').first(), p)
+        res = self.client.get(reverse('authors'))
+        self.assertEqual(res.status_code, 200)
+        self.assertEqual(res.context.get('list_authors').count(),1)
+        self.assertEqual(res.context.get('list_authors').first(), p)
