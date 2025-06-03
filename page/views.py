@@ -13,9 +13,9 @@ class PapersPage(TemplateView):
     template_name = 'papers.html'       
 
     
-######################
- # Data Base 
-######################
+
+ # DataBase 
+
 
 
 class AuthorsListView(ListView):
