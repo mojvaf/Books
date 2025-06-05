@@ -1,1 +1,3 @@
 django ~= 4.0.0
+
+#should i add pillow here?

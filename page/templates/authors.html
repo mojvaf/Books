@@ -14,29 +14,26 @@
   >
     List of our authors
   </h2>
-  <div
-    class="card border-0 shadow-sm p-4 bg-white rounded"
-    style="width: 24rem"
-  >
+  <div class="card shadow-sm p-4 bg-white rounded" style="width: 24rem">
     <div class="card-body">
       {% for author in object_list %}
       <p class="card-text text-muted">{{author.bio}}</p>
-      <div class="d-flex align-items-center mt-4">
+      <div class="d-flex align-items-center mb-4">
         <img
-          src="https://via.placeholder.com/50"
-          alt="Dunia Basciu"
+          src="{{ author.banner.url }}"
+          alt="{{ author.first_name }}"
           class="rounded-circle me-3"
-          style="width: 50px; height: 50px"
+          style="width: 50px; height: 50px; object-fit: cover"
         />
         <div>
           <h6 class="fw-bold mb-0">
             {{author.first_name}} {{author.last_name}}
           </h6>
-          <small class="text-muted">{{author.title}}</small>
+          <small class="text-muted mb-1">{{author.title}}</small>
         </div>
       </div>
+      {% endfor %}
     </div>
-    {% endfor %}
   </div>
 </div>
 {%endblock content%}
