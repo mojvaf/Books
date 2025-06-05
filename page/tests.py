@@ -51,7 +51,8 @@ class AuthorsListTest(TestCase):
         p = Authors.objects.create(
              first_name="John",
              last_name="Doe",
-             bio="A test author."
+             bio="A test author.",
+             title="hdflh"
         )
             
         res = self.client.get(reverse('authors'))
