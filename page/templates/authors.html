@@ -1,27 +1,37 @@
 {% extends 'master.html' %} {% block content %}
 
-<body>
-  <div class="container my-5">
-    <h1 class="text-center mb-4">Author List</h1>
-    <div class="table-responsive">
-      <table class="table table-striped table-bordered">
-        <thead class="table-dark">
-          <tr>
-            <th>First Name</th>
-            <th>Last Name</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for author in object_list %}
-          <tr class="table-primary">
-            <td>{{ author.first_name }}</td>
-            <td>{{ author.last_name }}</td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
+<div
+  class="bg-light d-flex flex-column justify-content-center align-items-center"
+  style="height: 100vh"
+>
+  <h2
+    class="text-primary fw-bold text-center mb-4"
+    style="
+      font-size: 2.5rem;
+      letter-spacing: 1px;
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.2);
+    "
+  >
+    List of our authors
+  </h2>
+  <div class="card shadow-sm p-4 bg-white rounded" style="width: 24rem">
+    <div class="card-body">
+      {% for author in object_list %}
+      <p class="card-text text-muted">{{author.bio}}</p>
+      <div class="d-flex align-items-center mb-4">
+        <img
+          src="{{ author.banner.url }}"
+          alt="{{ author.first_name }}"
+          class="rounded-circle me-3"
+          style="width: 50px; height: 50px; object-fit: cover"
+        />
+        <div>
+          <h6 class="fw-bold">{{author.first_name}} {{author.last_name}}</h6>
+          <small class="text-muted mb-1">{{author.title}}</small>
+        </div>
+      </div>
+      {% endfor %}
     </div>
-
-    {%endblock content%}
   </div>
-</body>
+</div>
+{%endblock content%}
