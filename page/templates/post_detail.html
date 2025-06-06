@@ -1,0 +1,7 @@
+{% extends 'master.html' %} {% block content %}
+<h3>Post details</h3>
+<title>{{post.title}}</title>
+<p>{{post.body}}</p>
+<small>{{post.author}}</small>
+<a href="{% url 'post-list' %}">Back to Post List</a>
+{% endblock content %}

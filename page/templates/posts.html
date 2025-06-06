@@ -1,0 +1,16 @@
+{% extends 'master.html' %} {% block content %}
+<div class="container mt-5">
+  <h1 class="text-center mb-4">Posts List</h1>
+  {% for p in post_list%}
+   <div class="col-md-4">
+    <div class="card mb-3 shadow-sm">
+       <div class="card-body">
+    <li><a href="{{p.get_absolute_url}}">{{p.title}}</a></li>
+  </div>
+  </div>
+  </div>
+
+   {% endfor %} 
+  </div>
+</div>
+{% endblock content %}
