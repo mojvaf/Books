@@ -22,7 +22,7 @@ from page.views import TeamPage
 from page.views import ProjectsPage
 from page.views import PapersPage
 from page.views import AuthorsListView
-
+from page.views import PostListView, PostDetailView
 
 urlpatterns = [
     path("admin/", admin.site.urls),
@@ -30,6 +30,9 @@ urlpatterns = [
     path("projects/", ProjectsPage.as_view(), name="projects"),
     path("papers/", PapersPage.as_view(), name="papers"),
     path("authors/", AuthorsListView.as_view(), name="authors"),
+    path("post-list/", PostListView.as_view(), name="post-list"),
+    path("post-detail/<int:pk>/", PostDetailView.as_view(), name="post-detail"),
 ]
+
 
 urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
